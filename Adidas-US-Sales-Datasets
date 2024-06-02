@@ -1,0 +1,53 @@
+-- Selecting all data from the Adidas table
+USE [Portfolio Project Adidas];
+SELECT *
+FROM [Adidas];
+
+
+-- Getting the unique list of retailers
+USE [Portfolio Project Adidas];
+SELECT DISTINCT retailer
+FROM dbo.Adidas;
+
+-- Counting unique retailers
+USE [Portfolio Project Adidas];
+SELECT COUNT(DISTINCT retailer)
+FROM Adidas;
+
+-- Finding the highest price products
+USE [Portfolio Project Adidas];
+SELECT Product, [Price per Unit], Region, State, City, Retailer
+FROM [Adidas]
+ORDER BY [Price per Unit] DESC;
+
+
+-- Getting the most sold products
+USE [Portfolio Project Adidas];
+SELECT Product, SUM([Units Sold]) AS Total_Units_Sold
+FROM [Adidas]
+GROUP BY Product
+ORDER BY Total_Units_Sold DESC;
+
+
+-- Retailers with highest and lowest number of sold products
+USE [Portfolio Project Adidas];
+SELECT Retailer, SUM([Units Sold]) AS Total_Units_Sold
+FROM Adidas
+GROUP BY Retailer
+ORDER BY Total_Units_Sold DESC;
+
+
+-- Retailers with highest and lowest sales
+USE [Portfolio Project Adidas];
+SELECT Retailer, SUM([Total Sales]) AS Total_Sales
+FROM Adidas
+GROUP BY Retailer
+ORDER BY Total_Sales DESC;
+
+
+-- Best retailer in every city
+USE [Portfolio Project Adidas];
+SELECT City, Retailer, SUM([Total Sales]) AS Total_Sales
+FROM Adidas
+GROUP BY City, Retailer
+ORDER BY Total_Sales DESC;
